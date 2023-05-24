@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Locale;
 
+// HTTP요청 (기본, 헤더 조회)
 @Slf4j // 로그 출력
 @RestController
 public class RequestHeaderController {
