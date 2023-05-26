@@ -31,7 +31,7 @@ public class RequestParamController {
     }
 
     @ResponseBody // "ok"문자를 뷰 조회를 진행하지 않고 HTTP 응답 메세지에 바로 넣어서 반환 가능(@RestController와 비슷)
-    @RequestMapping("request-param-v2")
+    @RequestMapping("/request-param-v2")
     public String requestParamV2(
             @RequestParam("username") String memberName,
             @RequestParam("age") int memberAge) {
@@ -43,7 +43,7 @@ public class RequestParamController {
 
     // HTTP 파라미터 이름이 변수 이름과 같으면 @RequestParam(name="xx") 생략 가능
     @ResponseBody
-    @RequestMapping("request-param-v3")
+    @RequestMapping("/request-param-v3")
     public String requestParamV3(
             @RequestParam String username,
             @RequestParam int age) {
@@ -55,7 +55,7 @@ public class RequestParamController {
 
     // String , int , Integer 등의 단순 타입이면 @RequestParam 도 생략 가능
     @ResponseBody
-    @RequestMapping("request-param-v4")
+    @RequestMapping("/request-param-v4")
     public String requestParamV4(String username, int age) {
 
         log.info("username={}, age={}", username, age);
@@ -78,7 +78,7 @@ public class RequestParamController {
      */
     // (required = true) 필수
     @ResponseBody
-    @RequestMapping("request-param-required")
+    @RequestMapping("/request-param-required")
     public String requestParamRequired(
             @RequestParam(required = true) String username,
             @RequestParam(required = false) Integer age) { // Integer 객체형에는 null이 들어갈 수 있다.
@@ -91,7 +91,7 @@ public class RequestParamController {
 
     // 기본 값 적용 - requestParamDefault
     @ResponseBody
-    @RequestMapping("request-param-default")
+    @RequestMapping("/request-param-default")
     public String requestParamDefault(
             @RequestParam(required = true, defaultValue = "guest") String username,
             @RequestParam(required = false, defaultValue = "-1") int age) {
@@ -103,7 +103,7 @@ public class RequestParamController {
 
     // 파라미터를 Map으로 조회하기 - requestParamMap
     @ResponseBody
-    @RequestMapping("request-param-map")
+    @RequestMapping("/request-param-map")
     public String requestParamMap(@RequestParam Map<String, Object> paramMap) {
 
         log.info("username={}, age={}", paramMap.get("username"), paramMap.get("age"));
