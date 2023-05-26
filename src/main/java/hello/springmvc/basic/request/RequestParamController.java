@@ -1,11 +1,9 @@
 package hello.springmvc.basic.request;
 
+import hello.springmvc.basic.HelloData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -108,6 +106,28 @@ public class RequestParamController {
 
         log.info("username={}, age={}", paramMap.get("username"), paramMap.get("age"));
 
+        return "ok";
+    }
+
+//    @ResponseBody
+//    @RequestMapping("/model-attribute-v1")
+//    public String modelAttributeV1Old(@RequestParam String username, @RequestParam int age) {
+//        HelloData helloData = new HelloData();
+//        helloData.setUsername(username);
+//        helloData.setAge(age);
+//
+//        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+//        log.info("helloData={}", helloData); // HelloData @Data애노테이션으로 toString()이 자동으로 만들어진다.
+//
+//        return "ok";
+//    }
+    // 아래와 같이 바꿀 수 있다.
+
+    // @ModelAttribute 적용 - modelAttributeV1
+    @ResponseBody
+    @RequestMapping("/model-attribute-v1")
+    public String modelAttributeV1(@ModelAttribute HelloData helloData) {
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
         return "ok";
     }
 }
