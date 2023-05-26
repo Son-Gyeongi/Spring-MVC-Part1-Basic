@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 // HTTP 요청 파라미터 (쿼리 파라미터, HTML Form)
 // http://localhost:8080/request-param-v1?username=hello&age=20
@@ -96,6 +97,16 @@ public class RequestParamController {
             @RequestParam(required = false, defaultValue = "-1") int age) {
 
         log.info("username={}, age={}", username, age);
+
+        return "ok";
+    }
+
+    // 파라미터를 Map으로 조회하기 - requestParamMap
+    @ResponseBody
+    @RequestMapping("request-param-map")
+    public String requestParamMap(@RequestParam Map<String, Object> paramMap) {
+
+        log.info("username={}, age={}", paramMap.get("username"), paramMap.get("age"));
 
         return "ok";
     }
