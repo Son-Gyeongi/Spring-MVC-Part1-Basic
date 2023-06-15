@@ -46,4 +46,27 @@ public class RequestBodyStringController {
         log.info("messageBody={}", messageBody);
         responseWriter.write("ok");
     }
+
+    // 이제부터 진짜가 나온다.
+    @PostMapping("/request-body-string-v3")
+    public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity) throws IOException {
+
+        // HTTP 컨텐트에 있는 http 메시지에 있는 body를 꺼내는 거다.
+        // 변환된 바디를 꺼낼 수 있다.
+        String messageBody = httpEntity.getBody();
+        log.info("messageBody={}", messageBody);
+
+        return new HttpEntity<>("ok");
+    }
+    // HttpEntity 를 상속받은 다음 객체들도 같은 기능을 제공한다. : RequestEntity, ResponseEntity
+//    @PostMapping("/request-body-string-v3")
+//    public HttpEntity<String> requestBodyStringV3(RequestEntity<String> httpEntity) throws IOException {
+//
+//        // HTTP 컨텐트에 있는 http 메시지에 있는 body를 꺼내는 거다.
+//        // 변환된 바디를 꺼낼 수 있다.
+//        String messageBody = httpEntity.getBody();
+//        log.info("messageBody={}", messageBody);
+//
+//        return new ResponseEntity<>("ok", HttpStatus.CREATED);
+//    }
 }
