@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -69,4 +71,15 @@ public class RequestBodyStringController {
 //
 //        return new ResponseEntity<>("ok", HttpStatus.CREATED);
 //    }
+
+    // @RequestBody 어노테이션 제공
+    // 실무에서 많이 쓰인다.
+    @ResponseBody
+    @PostMapping("/request-body-string-v4")
+    public String requestBodyStringV4(@RequestBody String messageBody) throws IOException {
+
+        log.info("messageBody={}", messageBody);
+
+        return "ok";
+    }
 }
