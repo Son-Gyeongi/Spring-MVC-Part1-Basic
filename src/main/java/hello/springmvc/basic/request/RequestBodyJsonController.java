@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -37,5 +39,18 @@ public class RequestBodyJsonController {
         log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
 
         response.getWriter().write("ok");
+    }
+
+    // @RequestBody 를 사용해서 HTTP 메시지에서 데이터를 꺼내고 messageBody에 저장한다.
+    @ResponseBody
+    @PostMapping("/request-body-json-v2")
+    public String requestBodyJsonV2(@RequestBody String messageBody) throws IOException {
+
+        log.info("messageBody={}", messageBody);
+        // {"username":"hello", "age":20}를 objectMapper을 이용해서 객체로 돌린다.
+        HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+
+        return "ok";
     }
 }
