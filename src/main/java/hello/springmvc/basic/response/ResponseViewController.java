@@ -24,4 +24,15 @@ public class ResponseViewController {
         model.addAttribute("data", "hello!");
         return "response/hello"; // 뷰의 논리적이름이된다.
     }
+
+    // 권장하지 않음 - 불명확함
+    /**
+     * 경로 /response/hello 이름이랑 hello.html경로(response/hello)랑 같다.
+     * 컨트롤러 경로 이름과 뷰의 논리적 이름이 같고 아무것도 반환하지 않으면
+     * response/hello 이게 논리적 뷰 이름으로 진행이 된다.
+     */
+    @RequestMapping("/response/hello")
+    public void responseViewV3(Model model) {
+        model.addAttribute("data", "hello!");
+    }
 }
