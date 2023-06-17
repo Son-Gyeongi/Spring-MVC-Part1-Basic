@@ -54,4 +54,19 @@ public class RequestBodyJsonController {
 
         return "ok";
     }
+
+    /**
+     * @RequestBody 객체 변환
+     *
+     * @RequestBody 생략 불가능(@ModelAttribute 가 적용되어 버림)
+     * HttpMessageConverter 사용
+     * -> MappingJackson2HttpMessageConverter (content-type: application/json)
+     */
+    @ResponseBody
+    @PostMapping("/request-body-json-v3")
+    public String requestBodyJsonV3(@RequestBody HelloData helloData) {
+
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+        return "ok";
+    }
 }
