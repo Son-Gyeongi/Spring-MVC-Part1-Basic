@@ -42,6 +42,7 @@ public class RequestBodyJsonController {
     }
 
     // @RequestBody 를 사용해서 HTTP 메시지에서 데이터를 꺼내고 messageBody에 저장한다.
+    // @RequestBody 문자 변환
     @ResponseBody
     @PostMapping("/request-body-json-v2")
     public String requestBodyJsonV2(@RequestBody String messageBody) throws IOException {
